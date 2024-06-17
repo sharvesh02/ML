@@ -10,3 +10,17 @@ print("Accuracy:", accuracy)
 plt.scatter(x, y, c=y, cmap='rainbow')
 plt.title('Scatter Plot of LinearRegression')
 plt.show()
+
+from sklearn.linear_model import LinearRegression
+import numpy as np
+X = np.array([[1, 1], [1, 2], [2, 2], [2, 3]])
+y = np.dot(X, np.array([1, 2])) + 3
+model = LinearRegression()
+model.fit(X, y)
+print(f"Model coefficients: {model.coef_}")
+print(f"Model intercept: {model.intercept_}")
+import matplotlib.pyplot as plt
+plt.scatter(X[:, 0], y)
+plt.plot(X[:, 0], y_pred, color='red')
+plt.show()
+
