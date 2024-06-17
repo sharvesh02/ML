@@ -1,0 +1,36 @@
+import csv
+data = []
+with open('/content/enjoysport.csv', 'r') as csvfile:
+    for row in csv.reader(csvfile):
+        data.append(row)
+num_attributes = len(data[0]) - 1
+S = ['0'] * num_attributes
+G = ['?'] * num_attributes
+G_new = []
+print("\nThe initial specific hypothesis S is:", S)
+print("The initial general hypothesis G is:", G)
+
+for i in range(1,len(data)):
+    if data[i][num_attributes] == 'yes':  
+        for j in range(num_attributes):
+            if S[j] == '0' or S[j] == data[i][j]:
+                S[j] = data[i][j]
+            else:
+                S[j] = '?'
+    else:
+       for k in range(num_attributes): 
+        if G[k] == '?':
+          if data[i][k] != S[k] and S[k] != '?':
+            G[k] = '?'
+            G[k] = S[k]
+            G_new.append(G)
+            G = ['?'] * num_attributes
+            
+
+    print("\nAfter instance",i,":")
+    print("Specific hypothesis S:", S)
+    print("General hypotheses G:", G_new)
+
+# Print the final hypotheses
+print("\nThe final specific hypothesis S is:", S)
+print("The final general hypothesis G is:", G_new)
