@@ -11,3 +11,23 @@ print("Accuracy:", accuracy)
 plt.scatter(x, y, c=y, cmap='rainbow')
 plt.title('Scatter Plot of Logistic Regression')
 plt.show()
+
+import sklearn
+from sklearn.linear_model import LogisticRegression
+import matplotlib.pyplot as plt  
+import pandas as pd
+from sklearn.datasets import load_iris 
+from sklearn.model_selection import train_test_split
+
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.3)
+logreg = LogisticRegression()
+logreg.fit(X_train, y_train)
+accuracy = logreg.score(X_test, y_test)
+print("Accuracy:", accuracy)
+
+plt.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target, cmap='rainbow')  
+plt.title('Scatter Plot of Logistic Regression')
+plt.xlabel('Sepal Length (cm)')  
+plt.ylabel('Sepal Width (cm)')
+plt.show()
